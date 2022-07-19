@@ -1,0 +1,48 @@
+PRIMERA PARTE ------------------------------------
+
+1) 	MODO PROTEGIDO: Es el modo nativo de operar del procesador. Provee flexibilidad, compatibilidad y un conjunto de 		caracteristicas de la arquitectura.
+
+	MODO REAL: Provee el entorno de programación del procesador Intel 8086, con unas pocas extensiones.
+	
+2) 	Debemos realizar este pasaje para poder obtener todas las características de nuestra arquitectura, acceder a la 		compatibilidad y proteger los accesos a memoria.
+
+3)	La GDT (Global Descriptor Table) es un array de descriptores de segmentos. Se almacena de forma continua en la memoria, 		alineada a 8 bytes, y su comienzo está dado por GDTR
+	
+	LIMIT: especifica el tamaño del segmento. El CPU junta ambos limites para formar un valor de 20 bits
+	BASE: puntero a la base del segmento. Junta los 3 valores para formar uno de 32 bits.
+	G: determina la escala del campo limite. Si está en 1 -> el limite se interpreta en 4KB, en 0 -> ... 1Byte
+	P: determina si el segmento está, o no, en la memoria.
+	DPL: especifica el privilegio del segmento. Puede ir de 0 a 3.
+	S: especifica si el segmento es para sistema o para codigo/data.
+	
+4)	1 0 1 0
+1
+6) 	gdt_entry_t gdt[] es un arreglo de descriptores de segmento (gdt_entry_t)
+	gdt_descriptor_t GDT_DESC es el descriptor de la GDT, es decir, qué tamaño tiene y dónde empieza?
+	
+10) 	LGDT carga el GDT. str_gdt_descriptor indica dónde empieza y el tamaño. Se inicializa en gdt.c linea 115
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+13)	Son registros de control de 32 bits. El bit PE (Protection Enable) habilita el modo protegido
+
+-----------------------------------------------------------------------------------------------
+
+21)	El metodo dibuja un rectángulo con el carácter especificado, entre los límites dados. Accede a pantalla a través de un puntero a la memoria. Usa la estructura 'ca' para representar cada carácter de la pantalla y ocupa 2bytes.
+
+
+
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+
+
+1) a) 	offset: dirección de memoria de dónde comienza la rutina de la interrupción. toma valores de 32bits
+	segsel: indica que selector debe utilizarse al ejecutar el código
+	type: indican el tipo de compuerta de la interrupción
+	dpl: privilegio
+	present: indica si la rutina se encuentra en memoria, o no 
+	
+6) 	El prologo y epilogo estarían en la función que fue interrumpida. Se usa iret para que restaure los flags a 
+	parte de todo lo demás.
+	
+

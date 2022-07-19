@@ -1,0 +1,19 @@
+3)	a) podemos definir dos, kernel y usuario
+	b) 	- los ultimos 10 bits corresponden al directorio de paginas
+		- los siguientes 10 corresponden al indice en la tabla de pagina
+		- los primeros 12 bits indican el indice en la pagina
+		
+		El selector de segmento indica el descriptor de segmento, el cual indica el segmento donde se haya la dirección 		lineal. Esta es la que se transformará en la dirección física. El CR3, en los 20 bits mas significativos, proporciona 			la dirección al directorio de paginas. El directorio almacena las direcciones a las tablas de paginas. Finalmente, la 			tabla de pagina almacena las direcciones a las paginas.
+		
+	c)
+		D: bit dirty, es seteado por unidad de memoria del procesador cuando se escribe en la página
+		A: accessed, es seteado cuando se escribee o se lee en la página
+		PCD: cache disabled, hace que la página no se almacene en memoria rápida
+		PWT: write through, al escribir se guarda en cache y memoria a la vez, si está apagado solo se actualiza la memoria cuando se desaloja el caché
+		U/S: indica si la página puede ser accedida por el usuario (on) o sólo el kernel (off)
+		R/W: indica si la página es de LyE (on) o solo L (off)
+		P: indica si la página se encuentra cargada en memoria o no
+		
+	d) 5
+	e) .
+	f) El buffer son precomputos de traducciones y hay que hacer flush para que no queden direcciones invalidas 
